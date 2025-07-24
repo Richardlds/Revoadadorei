@@ -783,3 +783,126 @@ footer {
         padding: 1.5rem;
     }
 }
+/* Melhorias específicas para mobile */
+@media (max-width: 480px) {
+    /* Header e Hero */
+    .hero h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    /* Menu mobile melhorado */
+    .burger {
+        padding: 10px;
+    }
+    
+    .nav-links {
+        top: 70px;
+    }
+    
+    /* Countdown */
+    .countdown {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .countdown div {
+        margin: 0;
+        min-width: auto;
+        flex: 1;
+    }
+    
+    .countdown span:first-child {
+        font-size: 1.8rem;
+    }
+    
+    .countdown span:last-child {
+        font-size: 0.8rem;
+    }
+    
+    /* Seções */
+    .section {
+        padding: 2rem 0;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    /* Ingressos */
+    .ticket-types {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .ticket-card {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Formulários */
+    .contact-form, 
+    .checkout-form {
+        padding: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    /* Modal */
+    .modal-content {
+        margin: 20% auto;
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    /* Mapa */
+    #map {
+        height: 300px;
+    }
+    
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .footer-links {
+        min-width: 100%;
+    }
+    
+    /* Botões */
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Ajustes de layout geral */
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Melhorias na navegação */
+    .nav-links {
+        background: rgba(0, 0, 0, 0.95);
+    }
+    
+    /* Ajustes no formulário de compra */
+    .ticket-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* FAQ */
+    .faq-question {
+        padding: 1rem;
+    }
+    
+    .faq-question h3 {
+        font-size: 1rem;
+    }
+}

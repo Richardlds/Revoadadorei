@@ -321,3 +321,34 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Executar uma vez ao carregar
 });
+
+// Melhorar a experiência do menu mobile
+burger.addEventListener('click', function() {
+    this.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+});
+
+// Fechar menu ao rolar em mobile
+window.addEventListener('scroll', function() {
+    if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        burger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Melhorar o touch no mapa
+const mapElement = document.getElementById('map');
+if (mapElement) {
+    mapElement.style.cssText += '; touch-action: pan-x pan-y;';
+}
+
+// Prevenir zoom no input em iOS
+document.querySelectorAll('input, select, textarea').forEach(element => {
+    element.addEventListener('focus', function() {
+        if (window.innerWidth <= 480) {
+            document.body.style.zoom = "100%";
+        }
+    });
+});

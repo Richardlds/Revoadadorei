@@ -4,14 +4,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
     
     burger.addEventListener('click', function() {
+        this.classList.toggle('active');
         navLinks.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
     });
     
     // Fechar menu ao clicar em um link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            burger.classList.remove('active');
+            document.body.style.overflow = '';
         });
+    });
+    
+    // Fechar menu ao rolar em mobile
+    window.addEventListener('scroll', function() {
+        if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            burger.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
     
     // Contagem regressiva
@@ -37,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 1000);
     
-    // Tipos de ingresso (pode ser carregado de uma API no mundo real)
+    // Tipos de ingresso
     const ticketTypes = [
         {
             id: 1,
@@ -51,22 +64,13 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 2,
-              name: " FEMININO",
+            name: "FEMININO",
             price: 0,
             features: [
-              "Acesso ao evento",
+                "Acesso ao evento",
                 "Área comum",
             ],
             available: true
-        },
-        {
-            id: 3,
-            name: " EM BREVE",
-            price: 0,
-            features: [
-               
-            ],
-            available: false
         }
     ];
     
@@ -84,24 +88,18 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="ticket-body">
                 <ul class="ticket-features">
-                    ${ticket.features.map((feature, index) => `
+                    ${ticket.features.map(feature => `
                         <li>
-                            <i class="fas ${index < 3 ? 'fa-check' : 'fa-times'}"></i>
+                            <i class="fas fa-check"></i>
                             ${feature}
                         </li>
                     `).join('')}
                 </ul>
                 <button class="btn buy-btn" data-id="${ticket.id}" data-name="${ticket.name}" data-price="${ticket.price}">
-                    ${ticket.available ? 'Comprar Agora' : 'Esgotado'}
+                    Comprar Agora
                 </button>
             </div>
         `;
-        
-        if (!ticket.available) {
-            ticketCard.querySelector('.buy-btn').disabled = true;
-            ticketCard.querySelector('.buy-btn').style.opacity = '0.6';
-            ticketCard.querySelector('.buy-btn').style.cursor = 'not-allowed';
-        }
         
         ticketContainer.appendChild(ticketCard);
     });
@@ -123,95 +121,124 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>Preço: R$ ${parseFloat(ticketPrice).toFixed(2).replace('.', ',')}</p>
                 </div>
                 
-                <form id="checkoutForm" class="checkout-form">
+                <form id="checkoutForm" class="checkout-form" name="checkoutForm" method="POST" netlify netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="checkoutForm">
+                    <input type="hidden" name="ticketType" value="${ticketName}">
+                    <input type="hidden" name="ticketPrice" value="${ticketPrice}">
+                    <p class="hidden">
+                        <label>Não preencha este campo se for humano: <input name="bot-field"></label>
+                    </p>
                     <h3>Informações Pessoais</h3>
                     <div class="form-group">
-                        <label for="name">Nome Completo</label>
-                        <input type="text" id="name" required>
+                        <label for="name">Nome Completo *</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" required>
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="phone">Telefone</label>
-                        <input type="tel" id="phone" required>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="cpf">CPF</label>
-                            <input type="text" id="cpf" required>
-                        </div>
-                        
-                    </div>
-                    
-                    <h3>Forma de Pagamento</h3>
-                    <div class="form-group">
-                        <label for="payment">Método</label>
-                        <select id="payment" required>
-                            <option value="">Selecione...</option>
-                            <option value="credit">Cartão de Crédito</option>
-                            <option value="pix">PIX</option>
-                            <option value="bank">Transferência Bancária</option>
-                        </select>
-                    </div>
-                    
-                    <div id="creditCardFields" style="display: none;">
-                        <div class="form-group">
-                            <label for="cardNumber">Número do Cartão</label>
-                            <input type="text" id="cardNumber">
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="cardExpiry">Validade</label>
-                                <input type="text" id="cardExpiry" placeholder="MM/AA">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="cardCvv">CVV</label>
-                                <input type="text" id="cardCvv">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="cardName">Nome no Cartão</label>
-                            <input type="text" id="cardName">
-                        </div>
+                        <label for="phone">Telefone *</label>
+                        <input type="tel" id="phone" name="phone" required>
                     </div>
                     
                     <div class="form-group">
-                        <input type="checkbox" id="terms" required>
-                        <label for="terms">Li e aceito os <a href="#">Termos e Condições</a></label>
+                        <label for="cpf">CPF *</label>
+                        <input type="text" id="cpf" name="cpf" required>
                     </div>
                     
-                    <button type="submit" class="btn">Finalizar Compra</button>
+                    <div class="form-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">Li e aceito os <a href="#">Termos e Condições</a> *</label>
+                    </div>
+                    
+                    <button type="submit" class="btn">Gerar QR Code PIX</button>
                 </form>
             `;
             
-            // Mostrar campos de cartão de crédito se selecionado
-            document.getElementById('payment').addEventListener('change', function() {
-                const creditCardFields = document.getElementById('creditCardFields');
-                creditCardFields.style.display = this.value === 'credit' ? 'block' : 'none';
-            });
-            
-            // Validar formulário
+            // Modificar o evento de submit do formulário para mostrar o QR code PIX
             document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-                e.preventDefault();
+    e.preventDefault();
                 
-                // Simular processamento de pagamento
-                setTimeout(() => {
-                    modal.style.display = 'none';
+                // Coletar dados do formulário
+                const formData = new FormData(this);
+                
+  // Enviar dados para o Netlify
+    fetch('/', {
+        method: 'POST',
+        body: new URLSearchParams(formData).toString(),
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    }).then(() => {
+        // Mostrar tela de pagamento PIX com SEU QR CODE
+       document.getElementById('modalBody').innerHTML = `
+    <div class="pix-payment">
+        <h3>Pagamento via PIX</h3>
+        <p>Valor: R$ ${parseFloat(ticketPrice).toFixed(2).replace('.', ',')}</p>
+        
+        <div class="pix-qr-code">
+            <iframe loading="lazy" style="width: 200px; height: 200px; border: none;"
+                src="https://www.canva.com/design/DAGuHKi8D1c/xnnAsCKSbYdHcyHvgk9iwg/view?embed" 
+                allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+            <p>Escaneie o QR code acima para pagar</p>
+        </div>
+        
+        <div class="pix-key">
+            <h4>Ou copie a chave PIX:</h4>
+            <div class="pix-key-value">
+                <span id="pixKey">023.248.016-80</span>
+                <button class="btn-copy" onclick="copyPixKey()">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <p class="pix-instructions">
+                <strong>Instruções:</strong>
+                <ol>
+                    <li>Abra seu aplicativo de banco</li>
+                    <li>Selecione a opção PIX</li>
+                    <li>Escaneie o QR Code ou cole a chave PIX</li>
+                    <li>Confirme o pagamento</li>
+                </ol>
+                <p>Envie o comprovante para WhatsApp (31) 99174-8889 para agilizar sua liberação.</p>
+            </p>
+        </div>
+        
+        <div class="payment-confirmation">
+            <p>Já efetuou o pagamento?</p>
+            <button class="btn" id="confirmPayment">Confirmar Pagamento</button>
+        </div>
+    </div>
+`;
+
+// Função para copiar a chave PIX
+window.copyPixKey = function() {
+    const pixKey = document.getElementById('pixKey').textContent.replace(/\./g, '').replace(/-/g, '');
+    navigator.clipboard.writeText(pixKey).then(() => {
+        alert('Chave PIX copiada para a área de transferência!');
+    });
+};
                     
-                    const confirmationModal = document.getElementById('confirmationModal');
-                    const confirmationMessage = document.getElementById('confirmationMessage');
-                    
-                    confirmationMessage.textContent = `Seu ingresso ${ticketName} foi reservado com sucesso! Os detalhes foram enviados para ${document.getElementById('email').value}.`;
-                    confirmationModal.style.display = 'block';
-                }, 1500);
+                    // Botão de confirmação de pagamento
+                    document.getElementById('confirmPayment').addEventListener('click', function() {
+                        // Simular confirmação de pagamento
+                        setTimeout(() => {
+                            modal.style.display = 'none';
+                            
+                            const confirmationModal = document.getElementById('confirmationModal');
+                            const confirmationMessage = document.getElementById('confirmationMessage');
+                            
+                            confirmationMessage.textContent = `Seu ingresso ${ticketName} foi confirmado com sucesso! Os detalhes foram enviados para ${document.getElementById('email').value}.`;
+                            confirmationModal.style.display = 'block';
+                        }, 1000);
+                    });
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert('Ocorreu um erro ao enviar seus dados. Por favor, tente novamente.');
+                });
             });
             
             modal.style.display = 'block';
@@ -255,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Mapa
-    const map = L.map('map').setView([-23.5505, -46.6333], 15);
+    const map = L.map('map').setView([-19.840865, -43.918970], 15);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -265,18 +292,52 @@ document.addEventListener('DOMContentLoaded', function() {
         .bindPopup('LOCAL DA REVOADA<br>Rua Olegário Mariano, 140 - Tupi, Belo Horizonte - MG, 31844-080')
         .openPopup();
     
+    // Melhorar o touch no mapa
+    const mapElement = document.getElementById('map');
+    if (mapElement) {
+        mapElement.style.cssText += '; touch-action: pan-x pan-y;';
+    }
+    
     // Formulário de contato
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-        this.reset();
+        
+        const formData = new FormData(this);
+        
+        fetch('/', {
+            method: 'POST',
+            body: new URLSearchParams(formData).toString(),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        }).then(() => {
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        }).catch(error => {
+            console.error('Error:', error);
+            alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
+        });
     });
     
     // Newsletter
     document.getElementById('newsletterForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        alert('Obrigado por assinar nossa newsletter!');
-        this.reset();
+        
+        const formData = new FormData(this);
+        
+        fetch('/', {
+            method: 'POST',
+            body: new URLSearchParams(formData).toString(),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        }).then(() => {
+            alert('Obrigado por assinar nossa newsletter!');
+            this.reset();
+        }).catch(error => {
+            console.error('Error:', error);
+            alert('Ocorreu um erro ao assinar a newsletter. Por favor, tente novamente.');
+        });
     });
     
     // Suavizar rolagem para links âncora
@@ -320,35 +381,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Executar uma vez ao carregar
-});
-
-// Melhorar a experiência do menu mobile
-burger.addEventListener('click', function() {
-    this.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-});
-
-// Fechar menu ao rolar em mobile
-window.addEventListener('scroll', function() {
-    if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        burger.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-});
-
-// Melhorar o touch no mapa
-const mapElement = document.getElementById('map');
-if (mapElement) {
-    mapElement.style.cssText += '; touch-action: pan-x pan-y;';
-}
-
-// Prevenir zoom no input em iOS
-document.querySelectorAll('input, select, textarea').forEach(element => {
-    element.addEventListener('focus', function() {
-        if (window.innerWidth <= 480) {
-            document.body.style.zoom = "100%";
-        }
+    
+    // Prevenir zoom no input em iOS
+    document.querySelectorAll('input, select, textarea').forEach(element => {
+        element.addEventListener('focus', function() {
+            if (window.innerWidth <= 480) {
+                document.body.style.zoom = "100%";
+            }
+        });
     });
 });

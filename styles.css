@@ -768,27 +768,12 @@ footer {
     }
 }
 
-@media (max-width: 576px) {
-    .countdown {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .countdown div {
-        margin: 0.5rem;
-        min-width: 70px;
-    }
-    
-    .modal-content {
-        padding: 1.5rem;
-    }
-}
 /* Melhorias específicas para mobile */
 @media (max-width: 480px) {
     /* Header e Hero */
     .hero h1 {
         font-size: 10px;
-        line-height: 1.2;
+        
     }
     
     .hero p {
@@ -817,11 +802,11 @@ footer {
     }
     
     .countdown span:first-child {
-        font-size: 1.8rem;
+        font-size: 0.5rem;
     }
     
     .countdown span:last-child {
-        font-size: 0.8rem;
+        font-size: 0.3rem;
     }
     
     /* Seções */

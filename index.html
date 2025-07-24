@@ -277,4 +277,283 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingressos para Minha Festa | Noite Inesquecível</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+   <header>
+    <div class="canva-background">
+        <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+            src="https://www.canva.com/design/DAGuFUmXuHc/1beyIbWzNfuqy46RihIvUQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+        </iframe>
+    </div>
+    <nav>
+        <div class="logo">
+            <span>REVOADA DO <span class="highlight">REI</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#ingressos">Ingressos</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#local">Local</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+        <div class="burger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    <div class="hero">
+        <h1>A Revoada Voltou!</h1>
+        <p>16 de Agosto de 2025 | 18h até o amanhecer</p>
+        <div class="countdown">
+            <div>
+                <span id="days">000 </span>
+                <span>Dias</span>
+            </div>
+            <div>
+                <span id="hours">00</span>
+                <span>Horas</span>
+            </div>
+            <div>
+                <span id="minutes">00</span>
+                <span>Minutos</span>
+            </div>
+            <div>
+                <span id="seconds">00</span>
+                <span>Segundos</span>
+            </div>
+        </div>
+        <a href="#ingressos" class="btn">Garanta seu ingresso</a>
+    </div>
+</header>
+
+    <section id="sobre" class="section">
+        <div class="container">
+            <h2>Sobre o Evento</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Prepare-se para a Volta da revoada mais esperada do ano! Nossa Revoada exclusiva reunirá os melhores Sons do momento, experiências únicas que ficarão na sua memória.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Casa com Piscina</li>
+                        <li><i class="fas fa-check"></i> Premiação Combo de Whisky</li>
+            
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="data:image/jpeg;base64,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">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ingressos" class="section bg-light">
+        <div class="container">
+            <h2>Ingressos</h2>
+            <p class="subtitle">Garanta já o seu ingresso antes que esgotem!</p>
+            
+            <div class="ticket-types">
+                <!-- Ticket cards serão inseridos pelo JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="section">
+        <div class="container">
+            <h2>Galeria</h2>
+            <p class="subtitle">Veja como foram nossas edições anteriores</p>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Festa">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="DJ">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Show">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Público">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Luzes">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1549213783-8284d0336c4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Balões">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="local" class="section bg-light">
+        <div class="container">
+            <h2>Localização</h2>
+            <div class="location-content">
+                <div class="location-info">
+                    <h3>Revoada do REI</h3>
+                    <p><a href="https://maps.app.goo.gl/VtAZELTmL8TqgChP9" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i> Rua Olegário Mariano, 140 - Tupi, Belo Horizonte - MG</a></p>
+                    <p><i class="fas fa-subway"></i> Onibus mais próximo: 1502, 1509, 1505</p>
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <div class="container">
+            <h2>Perguntas Frequentes</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Qual a idade mínima para entrar?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O evento é exclusivo para maiores de 16 anos.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Posso comprar ingresso na hora?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim. Sujeito a alteração de preços.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Qual a política de reembolso?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Os ingressos são reembolsáveis até 12h após a compra, com taxa administrativa de 10%. Após esse período, não serão reembolsados.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Promoções!</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O Participante que mais convidadar pessoas irá ganha um combo de whisky como recompensa! confira o regulamento! </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section bg-light">
+        <div class="container">
+            <h2>Contato</h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Fale conosco</h3>
+                    <p><i class="fas fa-envelope"></i> revoadadorei@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> (31) 99174-8889</p>
+                    <p><i class="fas fa-clock"></i> Atendimento: Seg-Sex, 10h-18h</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Seu e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Seu telefone">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Sua mensagem" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>Revoada do <span class="highlight">REI</span></span>
+                    <p>A melhor festa da sua vida!</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#ingressos">Ingressos</a></li>
+                        <li><a href="#galeria">Galeria</a></li>
+                        <li><a href="#local">Local</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Receba novidades</h4>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Seu melhor e-mail" required>
+                        <button type="submit" class="btn">Assinar</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 RevoadadoRei. Todos os direitos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amazon-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Compra -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Comprar Ingresso</h2>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo será inserido pelo JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmação de Compra -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content confirmation">
+            <i class="fas fa-check-circle"></i>
+            <h2>Compra realizada com sucesso!</h2>
+            <p id="confirmationMessage">Seu ingresso foi reservado e os detalhes foram enviados para seu e-mail.</p>
+            <button class="btn" id="closeConfirmation">Fechar</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>

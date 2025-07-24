@@ -787,7 +787,7 @@ footer {
 @media (max-width: 480px) {
     /* Header e Hero */
     .hero h1 {
-        font-size: 2rem;
+        font-size: 10px;
         line-height: 1.2;
     }
     

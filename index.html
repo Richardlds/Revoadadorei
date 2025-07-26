@@ -3,204 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingressos para Minha Festa | Noite Inesquecível</title>
+    <title>Revoada do Rei - A Maior Festa Universitária</title>
+    <meta name="description" content="Garanta seu ingresso para a Revoada do Rei - 16 de Agosto de 2025 - A maior festa universitária de BH">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
-    1.0
-   <header>
-    <div class="canva-background">
+    <!-- Header Hero Section -->
+  <header class="hero">
+    <div class="hero-background">
         <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
             src="https://www.canva.com/design/DAGuFUmXuHc/1beyIbWzNfuqy46RihIvUQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
         </iframe>
     </div>
+    <div class="hero-overlay"></div>
     <nav>
-        <div class="logo">
-            <span>REVOADA DO <span class="highlight">REI</span></span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#ingressos">Ingressos</a></li>
-            <li><a href="#galeria">Galeria</a></li>
-            <li><a href="#local">Local</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contato">Contato</a></li>
-        </ul>
-        <div class="burger">
-            <i class="fas fa-bars"></i>
-        </div>
-    </nav>
-    <div class="hero">
-        <h1>A Revoada Voltou!</h1>
-        <p>16 de Agosto de 2025 | 18h até o amanhecer</p>
-        <div class="countdown">
-            <div>
-                <span id="days">000 </span>
-                <span>Dias</span>
+            <div class="logo">
+                <span>REVOADA DO <span class="highlight">REI</span></span>
             </div>
-            <div>
-                <span id="hours">00</span>
-                <span>Horas</span>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#ingressos">Ingressos</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#local">Local</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
             </div>
-            <div>
-                <span id="minutes">00</span>
-                <span>Minutos</span>
-            </div>
-            <div>
-                <span id="seconds">00</span>
-                <span>Segundos</span>
-            </div>
-        </div>
-        <a href="#ingressos" class="btn">Garanta seu ingresso</a>
-    </div>
-</header>
+        </nav>
 
-    <section id="sobre" class="section">
-        <div class="container">
-            <h2>Sobre o Evento</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Prepare-se para a Volta da revoada mais esperada do ano! Nossa Revoada exclusiva reunirá os melhores Sons do momento, experiências únicas que ficarão na sua memória.</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Casa com Piscina</li>
-                        <li><i class="fas fa-check"></i> Premiação Combo de Whisky</li>
-                    </ul>
-                </div>
-                <div class="about-image">
-                    <img src="https://a-static.mlcdn.com.br/470x352/combo-whisky-red-label-1l-energetico-vibe-4-gelo-de-coco-johnnie-walker/adegavaragos/15924367843/444238eb285da85cb901f8d24c9bdfca.jpeg">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="ingressos" class="section bg-light">
-        <div class="container">
-            <h2>Ingressos</h2>
-            <p class="subtitle">Garanta já o seu ingresso antes que esgotem!</p>
+        <div class="hero-content">
+            <h1>A MAIOR REVOADA <span>DE BH</span></h1>
+            <p class="date">16 DE AGOSTO DE 2025 | 18H ÀS 6H</p>
             
-            <div class="ticket-types">
-                <!-- Ticket cards serão inseridos pelo JavaScript -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span id="days">00</span>
+                    <small>Dias</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">00</span>
+                    <small>Horas</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">00</span>
+                    <small>Minutos</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">00</span>
+                    <small>Segundos</small>
+                </div>
+            </div>
+            
+            <a href="#ingressos" class="btn btn-primary pulse">GARANTA SEU INGRESSO</a>
+        </div>
+    </header>
+
+<!-- Sobre Section -->
+<section id="sobre" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>A REVOADA <span>DO REI</span></h2>
+            <p class="subtitle">A festa mais esperada do ano está de volta!</p>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-content">
+                <p>Prepare-se para a noite mais épica do ano! A Revoada do Rei reúne os melhores DJs, open bar premium e uma experiência inesquecível em uma casa com piscina incrível.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-swimming-pool"></i>
+                        <p>Casa com piscina</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-trophy"></i>
+                        <p>Premiação Combo de Whisky</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-music"></i>
+                        <p>Os melhores DJs</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-glass-cheers"></i>
+                        <p>Permitido Entrar Com Bebidas</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-glass-cheers"></i>
+                        <p>O participante que mais convidar pessoas ganhará um combo de whisky como recompensa.</p>
+                    </div>
+                </div>
+            </div>
+            
+           <div class="about-media">
+    <div class="canva-embed-container">
+        <iframe loading="lazy" 
+                src="https://www.canva.com/design/DAGuQxT3puo/JiGQlsgGgsazRoBSHwqJ-A/view?embed" 
+                allowfullscreen="allowfullscreen" 
+                allow="fullscreen">
+        </iframe>
+    </div>
+</div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- Ingressos Section -->
+    <section id="ingressos" class="section bg-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>INGRESSOS</h2>
+                <p class="subtitle">Garanta já o seu antes que esgotem!</p>
+            </div>
+            
+            <div class="ticket-grid">
+                <!-- Tickets will be rendered by JavaScript -->
             </div>
         </div>
     </section>
 
-    <section id="local" class="section bg-light">
+    <!-- Galeria Section
+    <section id="galeria" class="section">
         <div class="container">
-            <h2>Localização</h2>
-            <div class="location-content">
-                <div class="location-info">
-                    <h3>Revoada do REI</h3>
-                    <p><a href="https://maps.app.goo.gl/VtAZELTmL8TqgChP9" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i> Rua Olegário Mariano, 140 - Tupi, Belo Horizonte - MG</a></p>
-                    <p><i class="fas fa-subway"></i> Onibus mais próximo: 1502, 1509, 1505</p>
+            <div class="section-header">
+                <h2>GALERIA</h2>
+                <p class="subtitle">Veja como foram as edições anteriores</p>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/random/300x300/?party,1" alt="Festa 1" loading="lazy">
                 </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/random/300x300/?party,2" alt="Festa 2" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/random/300x300/?party,3" alt="Festa 3" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/random/300x300/?party,4" alt="Festa 4" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/random/300x300/?party,5" alt="Festa 5" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/random/300x300/?party,6" alt="Festa 6" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+     -->
+
+    <!-- Local Section -->
+    <section id="local" class="section bg-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>LOCALIZAÇÃO</h2>
+                <p class="subtitle">Onde a mágica acontece</p>
+            </div>
+            
+            <div class="location-grid">
+                <div class="location-info">
+                    <h3>REVOADA DO REI</h3>
+                    <address>
+                        <p><i class="fas fa-map-marker-alt"></i> Rua Olegário Mariano, 140 - Tupi, Belo Horizonte - MG</p>
+                        <p><i class="fas fa-subway"></i> Ônibus mais próximo: 1502, 1509, 1505</p>
+                        <p><i class="fas fa-car"></i> Estacionamento disponível no local</p>
+                    </address>
+                    
+                    <a href="https://maps.app.goo.gl/VtAZELTmL8TqgChP9" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-directions"></i> COMO CHEGAR
+                    </a>
+                </div>
+                
                 <div id="map"></div>
             </div>
         </div>
     </section>
 
+    <!-- FAQ Section -->
     <section id="faq" class="section">
         <div class="container">
-            <h2>Perguntas Frequentes</h2>
+            <div class="section-header">
+                <h2>PERGUNTAS FREQUENTES</h2>
+                <p class="subtitle">Tire suas dúvidas sobre o evento</p>
+            </div>
             
             <div class="faq-container">
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Qual a idade mínima para entrar?</h3>
+                    <button class="faq-question">
+                        <span>Qual a idade mínima para entrar?</span>
                         <i class="fas fa-chevron-down"></i>
-                    </div>
+                    </button>
                     <div class="faq-answer">
-                        <p>O evento é exclusivo para maiores de 16 anos.</p>
+                        <p>O evento é exclusivo para maiores de 16 anos. .</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Posso comprar ingresso na hora?</h3>
+                    <button class="faq-question">
+                        <span>Posso comprar ingresso na hora?</span>
                         <i class="fas fa-chevron-down"></i>
-                    </div>
+                    </button>
                     <div class="faq-answer">
-                        <p>Sim. Sujeito a alteração de preços.</p>
+                        <p>Sim, porém sujeito a disponibilidade e com acréscimo de 30% no valor do ingresso. Recomendamos a compra antecipada.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Qual a política de reembolso?</h3>
+                    <button class="faq-question">
+                        <span>Qual a política de reembolso?</span>
                         <i class="fas fa-chevron-down"></i>
-                    </div>
+                    </button>
                     <div class="faq-answer">
                         <p>Os ingressos são reembolsáveis até 12h após a compra, com taxa administrativa de 10%. Após esse período, não serão reembolsados.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Promoções!</h3>
+                    <button class="faq-question">
+                        <span>Haverá promoções?</span>
                         <i class="fas fa-chevron-down"></i>
-                    </div>
+                    </button>
                     <div class="faq-answer">
-                        <p>O Participante que mais convidadar pessoas irá ganha um combo de whisky como recompensa! confira o regulamento! </p>
+                        <p>Sim! O participante que mais convidar pessoas ganhará um combo de whisky como recompensa. Confira o regulamento completo no local do evento.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Qual o dress code?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O dress code é livre, porém recomendamos roupas leves e confortáveis.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contato" class="section bg-light">
+    <!-- Contato Section -->
+    <section id="contato" class="section bg-dark">
         <div class="container">
-            <h2>Contato</h2>
+            <div class="section-header">
+                <h2>CONTATO</h2>
+                <p class="subtitle">Fale com nossa equipe</p>
+            </div>
             
-            <div class="contact-content">
+            <div class="contact-grid">
                 <div class="contact-info">
-                    <h3>Fale conosco</h3>
-                    <p><i class="fas fa-envelope"></i> revoadadorei@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> (31) 99174-8889</p>
-                    <p><i class="fas fa-clock"></i> Atendimento: Seg-Sex, 10h-18h</p>
+                    <h3>INFORMAÇÕES</h3>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>revoadadorei@gmail.com</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <p>(31) 99174-8889</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Atendimento: Seg-Sex, 10h-18h</p>
+                    </div>
                     
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 
-                <form class="contact-form" id="contactForm" name="contactForm" method="POST" netlify netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="contactForm">
+                <form class="contact-form" id="contactForm" name="contact" method="POST" netlify netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
                     <p class="hidden">
-                        <label>Não preencha este campo se for humano: <input name="bot-field"></label>
+                        <label>Não preencha este campo: <input name="bot-field"></label>
                     </p>
                     
                     <div class="form-group">
-                        <input type="text" name="nome" placeholder="Seu nome *" required>
+                        <input type="text" name="name" placeholder="Seu nome *" required>
                     </div>
+                    
                     <div class="form-group">
                         <input type="email" name="email" placeholder="Seu e-mail *" required>
                     </div>
+                    
                     <div class="form-group">
-                        <input type="tel" name="telefone" placeholder="Seu telefone *" required>
+                        <input type="tel" name="phone" placeholder="Seu telefone *" required>
                     </div>
+                    
                     <div class="form-group">
-                        <textarea name="mensagem" placeholder="Sua mensagem *" rows="4" required></textarea>
+                        <textarea name="message" placeholder="Sua mensagem *" rows="4" required></textarea>
                     </div>
-                    <button type="submit" class="btn">Enviar Mensagem</button>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> ENVIAR MENSAGEM
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span>Revoada do <span class="highlight">REI</span></span>
-                    <p>A melhor festa da sua vida!</p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <span>REVOADA DO <span class="highlight">REI</span></span>
+                    </div>
+                    <p>A maior festa universitária de Belo Horizonte</p>
                 </div>
                 
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
+                <div class="footer-col">
+                    <h4>LINKS</h4>
                     <ul>
                         <li><a href="#sobre">Sobre</a></li>
                         <li><a href="#ingressos">Ingressos</a></li>
@@ -209,36 +335,49 @@
                     </ul>
                 </div>
                 
-                <div class="footer-newsletter">
-                    <h4>Receba novidades</h4>
-                    <form id="newsletterForm" name="newsletterForm" method="POST" netlify netlify-honeypot="bot-field">
-                        <input type="hidden" name="form-name" value="newsletterForm">
+                <div class="footer-col">
+                    <h4>CONTATO</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> revoadadorei@gmail.com</li>
+                        <li><i class="fas fa-phone-alt"></i> (31) 99174-8889</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>NEWSLETTER</h4>
+                    <p>Receba novidades sobre o evento</p>
+                    
+                    <form id="newsletterForm" name="newsletter" method="POST" netlify netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="newsletter">
                         <p class="hidden">
-                            <label>Não preencha este campo se for humano: <input name="bot-field"></label>
+                            <label>Não preencha este campo: <input name="bot-field"></label>
                         </p>
-                        <input type="email" name="email" placeholder="Seu melhor e-mail *" required>
-                        <button type="submit" class="btn">Assinar</button>
+                        <div class="newsletter-input">
+                            <input type="email" name="email" placeholder="Seu e-mail" required>
+                            <button type="submit" aria-label="Assinar newsletter">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 RevoadadoRei. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Revoada do Rei. Todos os direitos reservados.</p>
+                
                 <div class="payment-methods">
-                    <i class="fab fa-cc-visa"></i>
-                    <i class="fab fa-cc-mastercard"></i>
-                    <i class="fab fa-cc-paypal"></i>
-                    <i class="fab fa-cc-amazon-pay"></i>
+                    <i class="fab fa-cc-pix" title="PIX"></i>
+                    <i class="fab fa-cc-visa" title="Visa"></i>
+                    <i class="fab fa-cc-mastercard" title="Mastercard"></i>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Modal de Pagamento -->
-    <div class="modal" id="ticketModal">
+    <div class="modal" id="paymentModal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Finalizar Compra</h2>
+            <button class="close-modal">&times;</button>
             <div class="modal-body" id="modalBody">
                 <!-- Conteúdo será preenchido pelo JavaScript -->
             </div>
@@ -248,14 +387,16 @@
     <!-- Modal de Confirmação -->
     <div class="modal" id="confirmationModal">
         <div class="modal-content confirmation">
-            <i class="fas fa-check-circle"></i>
-            <h2>Recebemos seu comprovante!</h2>
-            <p id="confirmationMessage"></p>
-            <button class="btn" id="closeConfirmation">Fechar</button>
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>COMPROVANTE ENVIADO!</h2>
+            <p>Estamos verificando seu pagamento e enviaremos o ingresso por e-mail em até 24 horas.</p>
+            <button class="btn btn-primary" id="closeConfirmation">FECHAR</button>
         </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

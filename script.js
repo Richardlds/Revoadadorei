@@ -41,206 +41,86 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 1000);
     
-    // Ticket Data
-    const ticketTypes = [
-        {
-            id: 1,
-            name: "Masculino",
-            price: 20.00,
-            features: [
-                "Acesso ao evento completo",
-                "Área comum com piscina",
-                "Entrada de bebidas permitido",
-            ],
-            available: true
-        },
-        {
-            id: 2,
-            name: "Feminino",
-            price: 0.00,
-            features: [
-             "Acesso ao evento completo",
-                "Área comum com piscina",
-                "Entrada de bebidas permitido",
-            ],
-            available: true
-        }
-    ];
-    
-    // Render Tickets
-    function renderTickets() {
-        const ticketContainer = document.querySelector('.ticket-grid');
-        ticketContainer.innerHTML = '';
-        
-        ticketTypes.forEach(ticket => {
-            const ticketCard = document.createElement('div');
-            ticketCard.className = 'ticket-card';
-            
-            ticketCard.innerHTML = `
-                <div class="ticket-header">
-                    <h3>${ticket.name}</h3>
-                    <div class="ticket-price">R$ ${ticket.price.toFixed(2).replace('.', ',')}</div>
-                </div>
-                <div class="ticket-body">
-                    <ul class="ticket-features">
-                        ${ticket.features.map(feature => `
-                            <li>
-                                <i class="fas fa-check"></i>
-                                ${feature}
-                            </li>
-                        `).join('')}
-                    </ul>
-                    <button class="btn btn-primary buy-btn" data-id="${ticket.id}" data-name="${ticket.name}" data-price="${ticket.price}">
-                        COMPRAR AGORA
-                    </button>
-                </div>
-            `;
-            
-            ticketContainer.appendChild(ticketCard);
-        });
-    }
-    
-    renderTickets();
-    
-    // Modal Handling
+    // Ticket Purchase Flow
+    const ticketModal = document.getElementById('ticketModal');
     const paymentModal = document.getElementById('paymentModal');
     const confirmationModal = document.getElementById('confirmationModal');
     const closeModalButtons = document.querySelectorAll('.close-modal, #closeConfirmation');
+    const ticketForm = document.getElementById('ticketForm');
     
-    // Check if we're on Netlify
-    const isNetlify = window.location.hostname.includes('netlify.app');
-    
-    // Open Payment Modal when clicking Buy button
+    // Open ticket form when clicking Buy button
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('buy-btn')) {
             const button = e.target;
-            const ticketName = button.getAttribute('data-name');
+            const ticketType = button.getAttribute('data-type');
             const ticketPrice = button.getAttribute('data-price');
             
-            document.getElementById('modalBody').innerHTML = `
-                <h2>Pagamento via PIX</h2>
-                <div class="pix-payment">
-                    <h3>${ticketName}</h3>
-                    <p class="ticket-price">Valor: R$ ${parseFloat(ticketPrice).toFixed(2).replace('.', ',')}</p>
-                    
-                    <div class="pix-qr-code">
-                        <iframe loading="lazy" style="width: 200px; height: 200px; border: none;"
-                            src="https://www.canva.com/design/DAGuHKi8D1c/xnnAsCKSbYdHcyHvgk9iwg/view?embed" 
-                            allowfullscreen="allowfullscreen" allow="fullscreen">
-                        </iframe>
-                        <p>Escaneie o QR code acima para pagar</p>
-                    </div>
-                    
-                    <div class="pix-key">
-                        <h4>Ou copie a chave PIX:</h4>
-                        <div class="pix-key-value">
-                            <span id="pixKey">023.248.016-80</span>
-                            <button class="btn-copy" onclick="copyPixKey()">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="pix-instructions">
-                        <h5>Como pagar:</h5>
-                        <ol>
-                            <li>Abra o app do seu banco</li>
-                            <li>Selecione a opção PIX</li>
-                            <li>Escaneie o QR code ou cole a chave PIX</li>
-                            <li>Confira os dados e confirme o pagamento</li>
-                        </ol>
-                    </div>
-                    
-                    <form id="paymentForm" class="payment-form" name="payment" method="POST" netlify netlify-honeypot="bot-field" enctype="multipart/form-data">
-                        <input type="hidden" name="form-name" value="payment">
-                        <input type="hidden" name="ticketType" value="${ticketName}">
-                        <input type="hidden" name="ticketPrice" value="${ticketPrice}">
-                        <p class="hidden">
-                            <label>Não preencha este campo: <input name="bot-field"></label>
-                        </p>
-                        
-                        <h4>Dados Pessoais</h4>
-                        
-                        <div class="form-group">
-                            <label for="customerName">Nome Completo *</label>
-                            <input type="text" id="customerName" name="name" required>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="customerEmail">E-mail *</label>
-                                <input type="email" id="customerEmail" name="email" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="customerPhone">Telefone *</label>
-                                <input type="tel" id="customerPhone" name="phone" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="customerCpf">CPF *</label>
-                            <input type="text" id="customerCpf" name="cpf" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="paymentProof">Comprovante de Pagamento *</label>
-                            <input type="file" id="paymentProof" name="paymentProof" accept="image/*,.pdf" required>
-                            <small>Aceitamos: JPG, PNG ou PDF (máx. 5MB)</small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">Li e aceito os <a href="#" target="_blank">Termos e Condições</a> *</label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-check-circle"></i> ENVIAR COMPROVANTE
-                        </button>
-                    </form>
-                </div>
-            `;
+            // Set ticket type and price in the form
+            document.getElementById('ticketType').value = ticketType;
+            document.getElementById('ticketPrice').value = ticketPrice;
             
-            // Add copyPixKey function to window
-            window.copyPixKey = function() {
-                const pixKey = document.getElementById('pixKey').textContent.replace(/\./g, '').replace(/-/g, '');
-                navigator.clipboard.writeText(pixKey).then(() => {
-                    alert('Chave PIX copiada para a área de transferência!');
-                });
-            };
-            
-            // Handle form submission
-            const paymentForm = document.getElementById('paymentForm');
-            if (paymentForm) {
-                paymentForm.addEventListener('submit', function(e) {
-    // Sempre permite que o Netlify gerencie o formulário
-    setTimeout(() => {
-        paymentModal.style.display = 'none';
-        confirmationModal.style.display = 'block';
-    }, 100);
-});
-            }
-            
-            paymentModal.style.display = 'block';
+            // Open ticket form modal
+            ticketModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
     });
+    
+    // Handle form submission
+    if (ticketForm) {
+        ticketForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Close ticket form and open payment modal
+            ticketModal.style.display = 'none';
+            paymentModal.style.display = 'block';
+            
+            // For Netlify form handling
+            if (window.location.hostname.includes('netlify.app')) {
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                }).then(() => {
+                    console.log('Form submitted to Netlify');
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            } else {
+                console.log('Form data:', data);
+            }
+        });
+    }
     
     // Close modals
     closeModalButtons.forEach(button => {
         button.addEventListener('click', function() {
+            ticketModal.style.display = 'none';
             paymentModal.style.display = 'none';
             confirmationModal.style.display = 'none';
+            document.body.style.overflow = '';
         });
     });
     
     window.addEventListener('click', function(e) {
-        if (e.target === paymentModal) {
+        if (e.target === ticketModal || e.target === paymentModal || e.target === confirmationModal) {
+            ticketModal.style.display = 'none';
             paymentModal.style.display = 'none';
-        }
-        if (e.target === confirmationModal) {
             confirmationModal.style.display = 'none';
+            document.body.style.overflow = '';
         }
     });
+    
+    // Copy PIX key function
+    window.copyPixKey = function() {
+        const pixKey = document.getElementById('pixKey').textContent.replace(/\./g, '').replace(/-/g, '');
+        navigator.clipboard.writeText(pixKey).then(() => {
+            alert('Chave PIX copiada para a área de transferência!');
+        });
+    };
     
     // FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');

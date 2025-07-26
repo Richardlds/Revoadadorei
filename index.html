@@ -65,7 +65,6 @@
                     <ul>
                         <li><i class="fas fa-check"></i> Casa com Piscina</li>
                         <li><i class="fas fa-check"></i> Premiação Combo de Whisky</li>
-            
                     </ul>
                 </div>
                 <div class="about-image">
@@ -85,8 +84,6 @@
             </div>
         </div>
     </section>
-
-   
 
     <section id="local" class="section bg-light">
         <div class="container">
@@ -169,28 +166,26 @@
                     </div>
                 </div>
                 
-             <!-- Formulário de Contato -->
-<form class="contact-form" id="contactForm" name="contactForm" method="POST" netlify netlify-honeypot="bot-field">
-  <input type="hidden" name="form-name" value="contactForm">
-  <p class="hidden">
-    <label>Não preencha este campo se for humano: <input name="bot-field"></label>
-  </p>
-  
-  <div class="form-group">
-    <input type="text" name="nome" placeholder="Seu nome *" required>
-  </div>
-  <div class="form-group">
-    <input type="email" name="email" placeholder="Seu e-mail *" required>
-  </div>
-  <div class="form-group">
-    <input type="tel" name="telefone" placeholder="Seu telefone *" required>
-  </div>
-  <div class="form-group">
-    <textarea name="mensagem" placeholder="Sua mensagem *" rows="4" required></textarea>
-  </div>
-  <button type="submit" class="btn">Enviar Mensagem</button>
-</form>
-
+                <form class="contact-form" id="contactForm" name="contactForm" method="POST" netlify netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contactForm">
+                    <p class="hidden">
+                        <label>Não preencha este campo se for humano: <input name="bot-field"></label>
+                    </p>
+                    
+                    <div class="form-group">
+                        <input type="text" name="nome" placeholder="Seu nome *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Seu e-mail *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="telefone" placeholder="Seu telefone *" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="mensagem" placeholder="Sua mensagem *" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
             </div>
         </div>
     </section>
@@ -215,15 +210,14 @@
                 
                 <div class="footer-newsletter">
                     <h4>Receba novidades</h4>
-              <!-- Newsletter -->
-<form id="newsletterForm" name="newsletterForm" method="POST" netlify netlify-honeypot="bot-field">
-  <input type="hidden" name="form-name" value="newsletterForm">
-  <p class="hidden">
-    <label>Não preencha este campo se for humano: <input name="bot-field"></label>
-  </p>
-  <input type="email" name="email" placeholder="Seu melhor e-mail *" required>
-  <button type="submit" class="btn">Assinar</button>
-</form>
+                    <form id="newsletterForm" name="newsletterForm" method="POST" netlify netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="newsletterForm">
+                        <p class="hidden">
+                            <label>Não preencha este campo se for humano: <input name="bot-field"></label>
+                        </p>
+                        <input type="email" name="email" placeholder="Seu melhor e-mail *" required>
+                        <button type="submit" class="btn">Assinar</button>
+                    </form>
                 </div>
             </div>
             
@@ -239,58 +233,23 @@
         </div>
     </footer>
 
-<!-- Modal de Pagamento -->
-<div class="modal" id="ticketModal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h2>Finalizar Compra</h2>
-        <div class="modal-body" id="modalBody">
-            <!-- Conteúdo será preenchido pelo JavaScript -->
+    <!-- Modal de Pagamento -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Finalizar Compra</h2>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo será preenchido pelo JavaScript -->
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Modal de Confirmação -->
-<div class="modal" id="confirmationModal">
-    <div class="modal-content confirmation">
-        <i class="fas fa-check-circle"></i>
-        <h2>Recebemos seu comprovante!</h2>
-        <p id="confirmationMessage"></p>
-        <button class="btn" id="closeConfirmation">Fechar</button>
-    </div>
-</div>
-    <!-- Modal de Envio de Comprovante -->
-<div class="modal" id="voucherModal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeVoucherModal()">&times;</span>
-        <h2>Enviar Comprovante</h2>
-        <form id="voucherForm" name="voucherForm" method="POST" netlify enctype="multipart/form-data">
-            <input type="hidden" name="form-name" value="voucherForm">
-            <input type="hidden" id="voucherTicketType" name="ticketType">
-            <input type="hidden" id="voucherTicketPrice" name="ticketPrice">
-            
-            
-            <div class="form-group">
-                <label>CPF *</label>
-                <input type="text" name="cpf" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Comprovante (Foto/PDF) *</label>
-                <input type="file" name="voucher" accept="image/*,.pdf" required>
-            </div>
-            
-            <button type="submit" class="btn">Enviar Comprovante</button>
-        </form>
-    </div>
-</div>
-
-    <!-- Confirmação de Compra -->
+    <!-- Modal de Confirmação -->
     <div class="modal" id="confirmationModal">
         <div class="modal-content confirmation">
             <i class="fas fa-check-circle"></i>
-            <h2>Compra realizada com sucesso!</h2>
-            <p id="confirmationMessage">Seu ingresso foi reservado e os detalhes foram enviados para seu e-mail.</p>
+            <h2>Recebemos seu comprovante!</h2>
+            <p id="confirmationMessage"></p>
             <button class="btn" id="closeConfirmation">Fechar</button>
         </div>
     </div>

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Menu mobile
     const burger = document.querySelector('.burger');
     const navLinks = document.querySelector('.nav-links');
-    const modal = document.getElementById('ticketModal'); // Agora usado apenas para o QR Code
+    const modal = document.getElementById('ticketModal');
     
     burger.addEventListener('click', function() {
         this.classList.toggle('active');
@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ticketContainer.appendChild(ticketCard);
     });
     
-   
     // Configuração do modal de pagamento PIX
     const closeModal = document.querySelector('.close-modal');
     const buyButtons = document.querySelectorAll('.buy-btn');
@@ -198,26 +197,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             };
             
-            // Envio do formulário
-            document.getElementById('paymentForm')?.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const formData = new FormData(this);
-                
-                fetch('/', {
-                    method: 'POST',
-                    body: formData,
-                }).then(() => {
-                    modal.style.display = 'none';
-                    const confirmationModal = document.getElementById('confirmationModal');
-                    const confirmationMessage = document.getElementById('confirmationMessage');
-                    confirmationMessage.textContent = 'Seu comprovante foi recebido! Verificaremos o pagamento e enviaremos seu ingresso em até 24h.';
-                    confirmationModal.style.display = 'block';
-                    this.reset();
-                }).catch(error => {
-                    console.error('Error:', error);
-                    alert('Erro ao enviar comprovante. Por favor, envie para o WhatsApp (31) 99174-8889');
-                });
+            // Configurar o evento de submit para mostrar a confirmação
+            document.getElementById('paymentForm')?.addEventListener('submit', function() {
+                modal.style.display = 'none';
+                const confirmationModal = document.getElementById('confirmationModal');
+                const confirmationMessage = document.getElementById('confirmationMessage');
+                confirmationMessage.textContent = 'Seu comprovante foi recebido! Verificaremos o pagamento e enviaremos seu ingresso em até 24h.';
+                confirmationModal.style.display = 'block';
+                this.reset();
             });
             
             modal.style.display = 'block';
@@ -277,48 +264,6 @@ document.addEventListener('DOMContentLoaded', function() {
         mapElement.style.cssText += '; touch-action: pan-x pan-y;';
     }
     
-    // Formulário de contato
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        
-        fetch('/', {
-            method: 'POST',
-            body: new URLSearchParams(formData).toString(),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }).then(() => {
-            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-            this.reset();
-        }).catch(error => {
-            console.error('Error:', error);
-            alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
-        });
-    });
-    
-    // Newsletter
-    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        
-        fetch('/', {
-            method: 'POST',
-            body: new URLSearchParams(formData).toString(),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }).then(() => {
-            alert('Obrigado por assinar nossa newsletter!');
-            this.reset();
-        }).catch(error => {
-            console.error('Error:', error);
-            alert('Ocorreu um erro ao assinar a newsletter. Por favor, tente novamente.');
-        });
-    });
-    
     // Suavizar rolagem para links âncora
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -370,8 +315,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// Função para fechar o modal de comprovante
-function closeVoucherModal() {
-    document.getElementById('voucherModal').style.display = 'none';
-}

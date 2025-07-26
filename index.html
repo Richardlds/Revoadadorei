@@ -239,16 +239,51 @@
         </div>
     </footer>
 
-    <!-- Modal de Compra -->
-    <div class="modal" id="ticketModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Comprar Ingresso</h2>
-            <div class="modal-body" id="modalBody">
-                <!-- Conteúdo será inserido pelo JavaScript -->
-            </div>
+<!-- Modal de Pagamento -->
+<div class="modal" id="ticketModal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Finalizar Compra</h2>
+        <div class="modal-body" id="modalBody">
+            <!-- Conteúdo será preenchido pelo JavaScript -->
         </div>
     </div>
+</div>
+
+<!-- Modal de Confirmação -->
+<div class="modal" id="confirmationModal">
+    <div class="modal-content confirmation">
+        <i class="fas fa-check-circle"></i>
+        <h2>Recebemos seu comprovante!</h2>
+        <p id="confirmationMessage"></p>
+        <button class="btn" id="closeConfirmation">Fechar</button>
+    </div>
+</div>
+    <!-- Modal de Envio de Comprovante -->
+<div class="modal" id="voucherModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeVoucherModal()">&times;</span>
+        <h2>Enviar Comprovante</h2>
+        <form id="voucherForm" name="voucherForm" method="POST" netlify enctype="multipart/form-data">
+            <input type="hidden" name="form-name" value="voucherForm">
+            <input type="hidden" id="voucherTicketType" name="ticketType">
+            <input type="hidden" id="voucherTicketPrice" name="ticketPrice">
+            
+            
+            <div class="form-group">
+                <label>CPF *</label>
+                <input type="text" name="cpf" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Comprovante (Foto/PDF) *</label>
+                <input type="file" name="voucher" accept="image/*,.pdf" required>
+            </div>
+            
+            <button type="submit" class="btn">Enviar Comprovante</button>
+        </form>
+    </div>
+</div>
 
     <!-- Confirmação de Compra -->
     <div class="modal" id="confirmationModal">

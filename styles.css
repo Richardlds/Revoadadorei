@@ -1063,4 +1063,76 @@ footer {
         margin-top: 0.5rem;
         margin-left: 0;
     }
-      }
+/* Estilos para o modal de comprovante */
+#voucherModal .modal-content {
+    max-width: 500px;
+}
+
+#voucherForm .form-group {
+    margin-bottom: 1rem;
+}
+
+#voucherForm label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+#voucherForm input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.payment-confirmation {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.payment-confirmation .btn {
+    margin-bottom: 1rem;
+}
+/* Estilos para o formulário de pagamento */
+.payment-form {
+    margin-top: 2rem;
+}
+
+.payment-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.payment-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.payment-form input[type="text"],
+.payment-form input[type="email"],
+.payment-form input[type="tel"],
+.payment-form input[type="file"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.payment-form input[type="file"] {
+    padding: 0.5rem;
+}
+
+.payment-form small {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.ticket-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: var(--cor-vermelho);
+}

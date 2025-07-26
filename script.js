@@ -2,14 +2,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Menu mobile
     const burger = document.querySelector('.burger');
     const navLinks = document.querySelector('.nav-links');
-    const modal = document.getElementById('ticketModal');
     
     burger.addEventListener('click', function() {
         this.classList.toggle('active');
         navLinks.classList.toggle('active');
         document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
     });
-    
+
     // Fechar menu ao clicar em um link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 2,
-            name: "FEMININO",
+            name: "Feminino",
             price: 0,
             features: [
                 "Acesso ao evento",
@@ -76,140 +75,161 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     
     // Renderizar ingressos
-    const ticketContainer = document.querySelector('.ticket-types');
-    
-    ticketTypes.forEach(ticket => {
-        const ticketCard = document.createElement('div');
-        ticketCard.className = 'ticket-card';
+    function renderTickets() {
+        const ticketContainer = document.querySelector('.ticket-types');
         
-        ticketCard.innerHTML = `
-            <div class="ticket-header">
-                <h3>${ticket.name}</h3>
-                <div class="ticket-price">R$ ${ticket.price.toFixed(2).replace('.', ',')}</div>
-            </div>
-            <div class="ticket-body">
-                <ul class="ticket-features">
-                    ${ticket.features.map(feature => `
-                        <li>
-                            <i class="fas fa-check"></i>
-                            ${feature}
-                        </li>
-                    `).join('')}
-                </ul>
-                <button class="btn buy-btn" data-id="${ticket.id}" data-name="${ticket.name}" data-price="${ticket.price}">
-                    Comprar Agora
-                </button>
-            </div>
-        `;
+        // Limpa o container antes de renderizar
+        ticketContainer.innerHTML = '';
         
-        ticketContainer.appendChild(ticketCard);
-    });
-    
-    // Configuração do modal de pagamento PIX
-    const closeModal = document.querySelector('.close-modal');
-    const buyButtons = document.querySelectorAll('.buy-btn');
-    
-    buyButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const ticketName = this.getAttribute('data-name');
-            const ticketPrice = this.getAttribute('data-price');
+        ticketTypes.forEach(ticket => {
+            const ticketCard = document.createElement('div');
+            ticketCard.className = 'ticket-card';
             
-            // Mostra o formulário de dados + comprovante
-            document.getElementById('modalBody').innerHTML = `
-                <div class="pix-payment">
-                    <h3>${ticketName}</h3>
-                    <p class="ticket-price">Valor: R$ ${parseFloat(ticketPrice).toFixed(2).replace('.', ',')}</p>
-                    
-                    <div class="pix-qr-code">
-                        <iframe loading="lazy" style="width: 200px; height: 200px; border: none;"
-                            src="https://www.canva.com/design/DAGuHKi8D1c/xnnAsCKSbYdHcyHvgk9iwg/view?embed" 
-                            allowfullscreen="allowfullscreen" allow="fullscreen">
-                        </iframe>
-                        <p>Escaneie o QR code acima para pagar</p>
-                    </div>
-                    
-                    <div class="pix-key">
-                        <h4>Ou copie a chave PIX:</h4>
-                        <div class="pix-key-value">
-                            <span id="pixKey">023.248.016-80</span>
-                            <button class="btn-copy" onclick="copyPixKey()">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <form id="paymentForm" class="payment-form" name="paymentForm" method="POST" netlify enctype="multipart/form-data">
-                        <input type="hidden" name="form-name" value="paymentForm">
-                        <input type="hidden" name="ticketType" value="${ticketName}">
-                        <input type="hidden" name="ticketPrice" value="${ticketPrice}">
-                        <p class="hidden">
-                            <label>Não preencha este campo: <input name="bot-field"></label>
-                        </p>
-                        
-                        <div class="form-group">
-                            <label for="customerName">Nome Completo *</label>
-                            <input type="text" id="customerName" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="customerEmail">E-mail *</label>
-                            <input type="email" id="customerEmail" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="customerPhone">Telefone *</label>
-                            <input type="tel" id="customerPhone" name="phone" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="customerCpf">CPF *</label>
-                            <input type="text" id="customerCpf" name="cpf" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="inviteCode">Código de Convite (opcional)</label>
-                            <input type="text" id="inviteCode" name="inviteCode">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="paymentProof">Comprovante de Pagamento *</label>
-                            <input type="file" id="paymentProof" name="paymentProof" accept="image/*,.pdf" required>
-                            <small>Aceitamos: JPG, PNG ou PDF (máx. 5MB)</small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">Li e aceito os <a href="#">Termos e Condições</a> *</label>
-                        </div>
-                        
-                        <button type="submit" class="btn">
-                            <i class="fas fa-check-circle"></i> Enviar Dados
-                        </button>
-                    </form>
+            ticketCard.innerHTML = `
+                <div class="ticket-header">
+                    <h3>${ticket.name}</h3>
+                    <div class="ticket-price">R$ ${ticket.price.toFixed(2).replace('.', ',')}</div>
+                </div>
+                <div class="ticket-body">
+                    <ul class="ticket-features">
+                        ${ticket.features.map(feature => `
+                            <li>
+                                <i class="fas fa-check"></i>
+                                ${feature}
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <button class="btn buy-btn" data-id="${ticket.id}" data-name="${ticket.name}" data-price="${ticket.price}">
+                        Comprar Agora
+                    </button>
                 </div>
             `;
             
-            // Função para copiar chave PIX
-            window.copyPixKey = function() {
-                const pixKey = document.getElementById('pixKey').textContent.replace(/\./g, '').replace(/-/g, '');
-                navigator.clipboard.writeText(pixKey).then(() => {
-                    alert('Chave PIX copiada para a área de transferência!');
-                });
-            };
-            
-            // Configurar o evento de submit para mostrar a confirmação
-            document.getElementById('paymentForm')?.addEventListener('submit', function() {
-                modal.style.display = 'none';
-                const confirmationModal = document.getElementById('confirmationModal');
-                const confirmationMessage = document.getElementById('confirmationMessage');
-                confirmationMessage.textContent = 'Seu comprovante foi recebido! Verificaremos o pagamento e enviaremos seu ingresso em até 24h.';
-                confirmationModal.style.display = 'block';
-                this.reset();
-            });
-            
-            modal.style.display = 'block';
+            ticketContainer.appendChild(ticketCard);
         });
-    });
+    }
+    
+    // Chamar a função para renderizar os ingressos
+    renderTickets();
+    
+   // Configuração do modal de pagamento PIX
+  const closeModal = document.querySelector('.close-modal');
+  const modal = document.getElementById('ticketModal');
+  const confirmationModal = document.getElementById('confirmationModal');
+  
+  // Verifica se estamos no Netlify
+  const isNetlify = window.location.hostname.includes('netlify.app');
+
+  // Adiciona evento de clique aos botões de compra
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('buy-btn')) {
+      const button = e.target;
+      const ticketName = button.getAttribute('data-name');
+      const ticketPrice = button.getAttribute('data-price');
+      
+      document.getElementById('modalBody').innerHTML = `
+        <div class="pix-payment">
+          <h3>${ticketName}</h3>
+          <p class="ticket-price">Valor: R$ ${parseFloat(ticketPrice).toFixed(2).replace('.', ',')}</p>
+          
+          <div class="pix-qr-code">
+            <iframe loading="lazy" style="width: 200px; height: 200px; border: none;"
+              src="https://www.canva.com/design/DAGuHKi8D1c/xnnAsCKSbYdHcyHvgk9iwg/view?embed" 
+              allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+            <p>Escaneie o QR code acima para pagar</p>
+          </div>
+          
+          <div class="pix-key">
+            <h4>Ou copie a chave PIX:</h4>
+            <div class="pix-key-value">
+              <span id="pixKey">023.248.016-80</span>
+              <button class="btn-copy" onclick="copyPixKey()">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+          
+          <form id="paymentForm" class="payment-form" name="payment" method="POST" netlify netlify-honeypot="bot-field" enctype="multipart/form-data">
+            <input type="hidden" name="form-name" value="payment">
+            <input type="hidden" name="ticketType" id="ticketTypeField" value="${ticketName}">
+            <input type="hidden" name="ticketPrice" id="ticketPriceField" value="${ticketPrice}">
+            <p class="hidden">
+              <label>Não preencha este campo: <input name="bot-field"></label>
+            </p>
+            
+            <div class="form-group">
+              <label for="customerName">Nome Completo *</label>
+              <input type="text" id="customerName" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="customerEmail">E-mail *</label>
+              <input type="email" id="customerEmail" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="customerPhone">Telefone *</label>
+              <input type="tel" id="customerPhone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="customerCpf">CPF *</label>
+              <input type="text" id="customerCpf" name="cpf" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="paymentProof">Comprovante de Pagamento *</label>
+              <input type="file" id="paymentProof" name="paymentProof" accept="image/*,.pdf" required>
+              <small>Aceitamos: JPG, PNG ou PDF (máx. 5MB)</small>
+            </div>
+            
+            <div class="form-group">
+              <input type="checkbox" id="terms" name="terms" required>
+              <label for="terms">Li e aceito os <a href="#">Termos e Condições</a> *</label>
+            </div>
+            
+            <button type="submit" class="btn">
+              <i class="fas fa-check-circle"></i> Enviar Dados
+            </button>
+          </form>
+        </div>
+      `;
+      
+      // Função para copiar chave PIX
+      window.copyPixKey = function() {
+        const pixKey = document.getElementById('pixKey').textContent.replace(/\./g, '').replace(/-/g, '');
+        navigator.clipboard.writeText(pixKey).then(() => {
+          alert('Chave PIX copiada para a área de transferência!');
+        });
+      };
+      
+      // Configurar o evento de submit
+      const paymentForm = document.getElementById('paymentForm');
+      if (paymentForm) {
+        paymentForm.addEventListener('submit', async function(e) {
+          if (isNetlify) {
+            // Envia normalmente para o Netlify
+            setTimeout(() => {
+              modal.style.display = 'none';
+              confirmationModal.style.display = 'block';
+            }, 500);
+          } else {
+            // Modo de teste - exibe os dados no console
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            console.log("Dados do formulário (modo teste):", data);
+            modal.style.display = 'none';
+            confirmationModal.style.display = 'block';
+            this.reset();
+          }
+        });
+      }
+      
+      modal.style.display = 'block';
+    }
+  });
     
     // Fechar modais
     closeModal.addEventListener('click', function() {

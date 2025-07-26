@@ -212,24 +212,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Handle form submission
             const paymentForm = document.getElementById('paymentForm');
             if (paymentForm) {
-                paymentForm.addEventListener('submit', async function(e) {
-                    if (isNetlify) {
-                        // Let Netlify handle the form submission
-                        setTimeout(() => {
-                            paymentModal.style.display = 'none';
-                            confirmationModal.style.display = 'block';
-                        }, 500);
-                    } else {
-                        // Test mode - log form data and show confirmation
-                        e.preventDefault();
-                        const formData = new FormData(this);
-                        const data = Object.fromEntries(formData.entries());
-                        console.log("Form Data:", data);
-                        paymentModal.style.display = 'none';
-                        confirmationModal.style.display = 'block';
-                        this.reset();
-                    }
-                });
+                paymentForm.addEventListener('submit', function(e) {
+    // Sempre permite que o Netlify gerencie o formulário
+    setTimeout(() => {
+        paymentModal.style.display = 'none';
+        confirmationModal.style.display = 'block';
+    }, 100);
+});
             }
             
             paymentModal.style.display = 'block';

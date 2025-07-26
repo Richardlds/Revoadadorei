@@ -401,9 +401,15 @@
                         <label for="cpf">CPF *</label>
                         <input type="text" id="cpf" name="cpf" required>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">CONTINUAR PARA PAGAMENTO</button>
-                </form>
+                      <!-- Novo campo para código de convite -->
+    <div class="form-group">
+        <label for="inviteCode">Código de Convite (opcional)</label>
+        <input type="text" id="inviteCode" name="inviteCode" placeholder="Digite seu código promocional">
+        <small class="invite-code-note">Se você tem um código promocional, insira aqui</small>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">CONTINUAR PARA PAGAMENTO</button>
+</form>
             </div>
         </div>
     </div>
@@ -476,4 +482,4 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
-    </html>
+</html>

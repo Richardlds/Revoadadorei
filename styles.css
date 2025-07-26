@@ -927,6 +927,19 @@ footer {
     color: var(--dark);
     font-size: 1.2rem;
 }
+/* Estilo para o campo de código de convite */
+.invite-code-note {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-style: italic;
+}
+
+/* Melhor espaçamento para o novo campo */
+.modal-body .form-group {
+    margin-bottom: 20px;
+}
 
 .pix-key-value {
     display: flex;

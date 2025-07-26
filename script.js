@@ -66,13 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Handle form submission
-    if (ticketForm) {
-        ticketForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
+   if (ticketForm) {
+    ticketForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+        console.log('Dados do formulário:', data); // Inclui o código de convite se preenchido
             
             // Close ticket form and open payment modal
             ticketModal.style.display = 'none';

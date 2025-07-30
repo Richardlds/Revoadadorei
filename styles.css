@@ -214,6 +214,15 @@ nav {
     background: url('https://source.unsplash.com/random/1920x1080/?party') no-repeat center center/cover;
     color: white;
 }
+.hero-background img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+}
+
 
 .hero-overlay {
     position: absolute;
@@ -460,11 +469,20 @@ nav {
 }
 
 /* ========== GALLERY SECTION ========== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
 .gallery-item {
     border-radius: 8px;
     overflow: hidden;
     position: relative;
     height: 250px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-item img {
@@ -472,6 +490,11 @@ nav {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .gallery-item:hover img {

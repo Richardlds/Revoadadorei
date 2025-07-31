@@ -72,28 +72,67 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const formData = new FormData(this);
         const data = Object.fromEntries(formData.entries());
-        console.log('Dados do formulário:', data); // Inclui o código de convite se preenchido
+        const ticketType = data.ticketType;
+        
+        console.log('Dados do formulário:', data);
             
             // Close ticket form and open payment modal
             ticketModal.style.display = 'none';
-            paymentModal.style.display = 'block';
             
-            // For Netlify form handling
-            if (window.location.hostname.includes('netlify.app')) {
-                fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString()
-                }).then(() => {
-                    console.log('Form submitted to Netlify');
-                }).catch(error => {
-                    console.error('Error:', error);
-                });
-            } else {
-                console.log('Form data:', data);
-            }
-        });
+            if (ticketType === 'Feminino') {
+            confirmationModal.style.display = 'block';
+        } else {
+            // Se for ingresso pago, mostrar modal de pagamento
+            paymentModal.style.display = 'block';
+        }
+             // Envio para Netlify (se aplicável)
+        if (window.location.hostname.includes('netlify.app')) {
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            }).then(() => {
+                console.log('Form submitted to Netlify');
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    });
+}
+    // Gallery functionality
+const galleryItems = document.querySelectorAll('.gallery-item');
+const galleryModal = document.createElement('div');
+galleryModal.className = 'gallery-modal';
+galleryModal.innerHTML = `
+    <span class="close-gallery">&times;</span>
+    <div class="gallery-modal-content">
+        <img src="" alt="">
+    </div>
+`;
+document.body.appendChild(galleryModal);
+
+galleryItems.forEach(item => {
+    item.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').getAttribute('src');
+        const imgAlt = this.querySelector('img').getAttribute('alt');
+        galleryModal.querySelector('img').setAttribute('src', imgSrc);
+        galleryModal.querySelector('img').setAttribute('alt', imgAlt);
+        galleryModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+document.querySelector('.close-gallery').addEventListener('click', function() {
+    galleryModal.style.display = 'none';
+    document.body.style.overflow = '';
+});
+
+galleryModal.addEventListener('click', function(e) {
+    if (e.target === galleryModal) {
+        galleryModal.style.display = 'none';
+        document.body.style.overflow = '';
     }
+});
     
     // Close modals
     closeModalButtons.forEach(button => {

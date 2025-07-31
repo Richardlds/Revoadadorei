@@ -50,7 +50,7 @@ img {
 /* ===== HEADER & NAVIGATION ===== */
 .hero {
     position: relative;
-    height: 100vh;
+    height: 120vh;
     min-height: 700px;
     display: flex;
     flex-direction: column;
@@ -417,6 +417,74 @@ nav {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+/* ===== GALLERY SECTION ===== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    aspect-ratio: 1 / 0.8;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Modal para imagens ampliadas */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.gallery-modal-content img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.close-gallery {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
 /* ===== LOCATION SECTION ===== */
 .location-grid {
     display: grid;
@@ -926,7 +994,10 @@ footer {
     .section-header h2 {
         font-size: 2rem;
     }
-    
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
     .nav-links {
         position: fixed;
         top: 0;

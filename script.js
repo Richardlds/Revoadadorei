@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Countdown Timer
-    const countdownDate = new Date('Aug 16, 2025 18:00:00').getTime();
+    const countdownDate = new Date('Sep 13, 2025 18:00:00').getTime();
     
     const countdown = setInterval(function() {
         const now = new Date().getTime();
@@ -188,9 +188,9 @@ galleryModal.addEventListener('click', function(e) {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
         
-        L.marker([-19.840865, -43.918970]).addTo(map)
-            .bindPopup('<b>REVOADA DO REI</b><br>Rua Olegário Mariano, 140 - Tupi, Belo Horizonte - MG')
-            .openPopup();
+        L.marker([-19.836359, -43.844132]).addTo(map)
+    .bindPopup('<b>NIGHT LORDS</b><br>Rua Britanite, 350 - Borba Gato, Sabará - MG')
+    .openPopup();
         
         // Improve touch on mobile
         const mapElement = document.getElementById('map');

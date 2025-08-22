@@ -33,10 +33,17 @@ function setupPaymentFlow() {
             
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
+            const ticketType = data.ticketType;
+            
             console.log('Dados do formulário:', data);
                 
             ticketModal.style.display = 'none';
-            paymentModal.style.display = 'block';
+            
+            if (ticketType === 'Feminino') {
+                confirmationModal.style.display = 'block';
+            } else {
+                paymentModal.style.display = 'block';
+            }
             
             // Envio para Netlify (se aplicável)
             if (window.location.hostname.includes('netlify.app')) {

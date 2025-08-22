@@ -4,27 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Night Lords</title>
-    <meta name="description" content="Garanta seu ingresso para o Night Lords - 16 de Agosto de 2025">
+    <meta name="description" content="Garanta seu ingresso para o Night Lords - 13 de Setembro de 2025">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <link rel="icon" href= "img/NL (800 x 800 px).png">
+    <link rel="icon" href="img/NL (800 x 800 px).png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header Hero Section -->
     <header class="hero">
        <div class="hero-background">
-    <video autoplay muted loop playsinline class="hero-video">
-        <source src="vid/NL.mp4" type="video/mp4">
-
-    </video>
-</div>
-</div>
-<div class="hero-overlay"></div>
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="img/N.mp4" type="video/mp4">
+            </video>
         </div>
+        <div class="hero-overlay"></div>
         
         <nav>
-            <img src="img/NL logo.png" alt="">
+            <img src="img/NL logo.png" >
             <div class="logo">
                 <span>NIGHT <span class="highlight">LORDS</span></span>
             </div>
@@ -109,7 +106,7 @@
             </div>
              <div class="about-media">
                 <div style="background-color: #1A1A1A; height: 300px; width: 100%; display: flex; justify-content: center; align-items: center; color: white;">
-                    PROMOÇÃO NIGHT LORDS
+                    <img src="img/promoçao.png" alt="">
                 </div>
             </div>
         </div>
@@ -158,7 +155,7 @@
         </div>
     </section>
 
-    <!-- Galeria Section -->
+   <!-- Galeria Section -->
 <section id="galeria" class="section">
     <div class="container">
         <div class="section-header">
@@ -169,25 +166,27 @@
         <div class="gallery-grid">
             <div class="gallery-item">
                 <div style="background-color: #1A1A1A; height: 200px; width: 100%; display: flex; justify-content: center; align-items: center; color: white;">
-                    <img src="img/galfoto1.jpeg" alt="">
+                    <img src="img/galfoto1.jpeg" alt="Foto da festa Night Lords">
                 </div>
             </div>
             <div class="gallery-item">
                 <div style="background-color: #1A1A1A; height: 200px; width: 100%; display: flex; justify-content: center; align-items: center; color: white;">
-                   <img src="img/galfoto2.jpeg" alt="">
+                   <img src="img/galfoto2.jpeg" alt="Foto da piscina na festa">
                 </div>
             </div>
             <div class="gallery-item">
                 <div style="background-color: #1A1A1A; height: 200px; width: 100%; display: flex; justify-content: center; align-items: center; color: white;">
-                    <img src="img/galfoto3.jpeg" alt="">
+                    <img src="img/galfoto3.jpeg" alt="Ambiente da festa Night Lords">
                 </div>
             </div>
             <div class="gallery-item">
-                <div style="background-color: #1A1A1A; height: px; width: 100%; display: flex; justify-content: center; align-items: center; color: white;">
-                    <video src="img/vidgal1.mp4">
+                <div class="video-container">
+                    <video autoplay muted loop playsinline>
+                        <source src="img/vidgal1.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeos HTML5.
+                    </video>
                 </div>
             </div>
-        
         </div>
     </div>
 </section>
@@ -466,7 +465,7 @@
                 
                <div class="pix-qr-code">
     <div>
-        <img src="img/qrcode.jpeg" alt="">
+        <img src="img/qrcode.jpeg" alt="QR Code para pagamento PIX">
     </div>
     <p>Escaneie o QR code acima para pagar</p>
 </div>
@@ -513,6 +512,17 @@
             <h2>COMPROVANTE ENVIADO!</h2>
             <p>Estamos verificando seu pagamento e enviaremos o ingresso por e-mail em até 24 horas.</p>
             <button class="btn btn-primary" id="closeConfirmation">FECHAR</button>
+        </div>
+    </div>
+
+    <!-- Modal de Vídeo -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <span class="close-video">&times;</span>
+            <video controls id="modalVideo">
+                <source src="img/vidgal1.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos HTML5.
+            </video>
         </div>
     </div>
 

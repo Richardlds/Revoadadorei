@@ -99,40 +99,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 }
-    // Gallery functionality
-const galleryItems = document.querySelectorAll('.gallery-item');
-const galleryModal = document.createElement('div');
-galleryModal.className = 'gallery-modal';
-galleryModal.innerHTML = `
-    <span class="close-gallery">&times;</span>
-    <div class="gallery-modal-content">
-        <img src="" alt="">
-    </div>
-`;
-document.body.appendChild(galleryModal);
 
-galleryItems.forEach(item => {
-    item.addEventListener('click', function() {
-        const imgSrc = this.querySelector('img').getAttribute('src');
-        const imgAlt = this.querySelector('img').getAttribute('alt');
-        galleryModal.querySelector('img').setAttribute('src', imgSrc);
-        galleryModal.querySelector('img').setAttribute('alt', imgAlt);
-        galleryModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+    // Gallery functionality - apenas para imagens
+    const galleryItems = document.querySelectorAll('.gallery-item:not(:has(.video-container))');
+    const galleryModal = document.createElement('div');
+    galleryModal.className = 'gallery-modal';
+    galleryModal.innerHTML = `
+        <span class="close-gallery">&times;</span>
+        <div class="gallery-modal-content">
+            <img src="" alt="">
+        </div>
+    `;
+    document.body.appendChild(galleryModal);
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const imgSrc = this.querySelector('img').getAttribute('src');
+            const imgAlt = this.querySelector('img').getAttribute('alt');
+            galleryModal.querySelector('img').setAttribute('src', imgSrc);
+            galleryModal.querySelector('img').setAttribute('alt', imgAlt);
+            galleryModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
     });
-});
 
-document.querySelector('.close-gallery').addEventListener('click', function() {
-    galleryModal.style.display = 'none';
-    document.body.style.overflow = '';
-});
-
-galleryModal.addEventListener('click', function(e) {
-    if (e.target === galleryModal) {
+    // Close gallery modal
+    document.querySelector('.close-gallery').addEventListener('click', function() {
         galleryModal.style.display = 'none';
         document.body.style.overflow = '';
-    }
-});
+    });
+
+    galleryModal.addEventListener('click', function(e) {
+        if (e.target === galleryModal) {
+            galleryModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Video functionality - apenas reprodução automática
+    const videoContainers = document.querySelectorAll('.video-container');
+    
+    videoContainers.forEach(container => {
+        const video = container.querySelector('video');
+        
+        // Inicializar vídeo com autoplay, mudo e loop
+        try {
+            video.muted = true;
+            video.loop = true;
+            video.play().catch(e => {
+                console.log('Autoplay bloqueado pelo navegador.');
+            });
+        } catch (e) {
+            console.log('Erro ao inicializar vídeo:', e);
+        }
+        
+        // Remover qualquer interatividade de clique no vídeo
+        container.style.cursor = 'default';
+        video.style.pointerEvents = 'none';
+        
+        // Tentar reproduzir novamente quando o usuário interagir com a página
+        document.addEventListener('click', function() {
+            if (video.paused) {
+                video.play().catch(e => console.log('Autoplay bloqueado:', e));
+            }
+        });
+    });
     
     // Close modals
     closeModalButtons.forEach(button => {
@@ -158,6 +189,8 @@ galleryModal.addEventListener('click', function(e) {
         const pixKey = document.getElementById('pixKey').textContent.replace(/\./g, '').replace(/-/g, '');
         navigator.clipboard.writeText(pixKey).then(() => {
             alert('Chave PIX copiada para a área de transferência!');
+        }).catch(err => {
+            console.error('Falha ao copiar texto: ', err);
         });
     };
     
@@ -189,8 +222,8 @@ galleryModal.addEventListener('click', function(e) {
         }).addTo(map);
         
         L.marker([-19.836359, -43.844132]).addTo(map)
-    .bindPopup('<b>NIGHT LORDS</b><br>Rua Britanite, 350 - Borba Gato, Sabará - MG')
-    .openPopup();
+            .bindPopup('<b>NIGHT LORDS</b><br>Rua Britanite, 350 - Borba Gato, Sabará - MG')
+            .openPopup();
         
         // Improve touch on mobile
         const mapElement = document.getElementById('map');
